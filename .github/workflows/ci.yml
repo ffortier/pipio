@@ -8,4 +8,4 @@ jobs:
     container: gcr.io/bazel-public/bazel:6.3.2
     steps:
       - name: Build it
-        run: bazel build //...
+        run: bazel build //... --output_base=./bazel-base
