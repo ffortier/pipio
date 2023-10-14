@@ -8,4 +8,4 @@ jobs:
     container: gcr.io/bazel-public/bazel:6.3.2
     steps:
       - name: Build it
-        run: bazel build //... --output_base=./bazel-base
+        run: bazel --output_user_root=$PWD/bazel-root build //... 
