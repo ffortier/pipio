@@ -1,0 +1,11 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container: gcr.io/bazel-public/bazel:6.3.2
+    steps:
+      - name: Build it
+        run: bazel build //...
