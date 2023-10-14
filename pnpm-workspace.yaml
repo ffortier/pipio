@@ -1,0 +1,6 @@
+packages:
+  - runtime
+  - sdk
+  - core
+  - examples/todo
+  - tools/assemblyscript
