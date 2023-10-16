@@ -4,18 +4,7 @@
 #
 #    bazel run //third_party/python:requirements.update
 #
-pyopengl==3.1.7 \
-    --hash=sha256:a6ab19cf290df6101aaf7470843a9c46207789855746399d0af92521a0a92b7a \
-    --hash=sha256:eef31a3888e6984fd4d8e6c9961b184c9813ca82604d37fe3da80eb000a76c86
-    # via
-    #   -r third_party/python/requirements.in
-    #   shadertest
-pysdl2==0.9.16 \
-    --hash=sha256:1027406badbecdd30fe56e800a5a76ad7d7271a3aec0b7acf780ee26a00f2d40
-    # via
-    #   -r third_party/python/requirements.in
-    #   shadertest
-shadertest==0.2.1 \
-    --hash=sha256:37a31872ab39dc751e51f4bfca306d999b41622841352a7f34c20ff8182240ab \
-    --hash=sha256:46fa227e1fb97308f2e960d0449e3bd6f4bc969ae9f4816b4e612852f95fb9d8
-    # via -r third_party/python/requirements.in
+antlr4-python3-runtime==4.13.1 \
+    --hash=sha256:3cd282f5ea7cfb841537fe01f143350fdb1c0b1ce7981443a2fa8513fddb6d1a \
+    --hash=sha256:78ec57aad12c97ac039ca27403ad61cb98aaec8a3f9bb8144f889aa0fa28b943
+    # via -r third_party/python/requirements.txt

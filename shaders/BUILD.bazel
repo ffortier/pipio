@@ -1,10 +1,9 @@
-load("@pypi//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
     name = "shader_test",
     srcs = ["shader_test.py"],
     deps = [
-        requirement("shadertest"),
+        "@antlr_grammars_v4//:glsl/py",
     ],
 )

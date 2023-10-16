@@ -1,0 +1,47 @@
+load("@pypi//:requirements.bzl", "requirement")
+load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_python//python:defs.bzl", "py_library")
+
+java_binary(
+    name = "antlr",
+    main_class = "org.antlr.v4.Tool",
+    runtime_deps = ["@antlr//jar"],
+)
+
+genrule(
+    name = "glsl/py_srcs",
+    srcs = [
+        "glsl/GLSLLexer.g4",
+        "glsl/GLSLPreParser.g4",
+        "glsl/GLSLParser.g4",
+    ],
+    outs = [
+        "glsl/GLSLLexer.interp",
+        "glsl/GLSLLexer.py",
+        "glsl/GLSLLexer.tokens",
+        "glsl/GLSLParser.interp",
+        "glsl/GLSLParser.py",
+        "glsl/GLSLParser.tokens",
+        "glsl/GLSLParserListener.py",
+        "glsl/GLSLParserVisitor.py",
+        "glsl/GLSLPreParser.interp",
+        "glsl/GLSLPreParser.py",
+        "glsl/GLSLPreParser.tokens",
+        "glsl/GLSLPreParserListener.py",
+        "glsl/GLSLPreParserVisitor.py",
+    ],
+    cmd = " && ".join([
+        "$(location :antlr) -o $(RULEDIR)/glsl -Dlanguage=Python3 -Xexact-output-dir -listener -visitor $(location glsl/GLSLLexer.g4)",
+        "$(location :antlr) -o $(RULEDIR)/glsl -Dlanguage=Python3 -Xexact-output-dir -lib $(RULEDIR)/glsl/GLSLLexer.tokens -listener -visitor $(location glsl/GLSLParser.g4) $(location glsl/GLSLPreParser.g4)",
+    ]),
+    tools = [":antlr"],
+)
+
+py_library(
+    name = "glsl/py",
+    srcs = [":glsl/py_srcs"],
+    visibility = ["//visibility:public"],
+    deps = [
+        requirement("antlr4-python3-runtime"),
+    ],
+)

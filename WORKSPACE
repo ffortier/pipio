@@ -1,4 +1,4 @@
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_jar")
 
 http_archive(
     name = "bazel_skylib",
@@ -78,3 +78,18 @@ pip_parse(
 load("@pypi//:requirements.bzl", "install_deps")
 
 install_deps()
+
+http_archive(
+    name = "antlr_grammars_v4",
+    build_file = "//third_party/antlr_grammars_v4:BUILD.antlr_grammars_v4.bazel",
+    sha256 = "b1741976e0e2f04e7da6c87d4f93f6fc8b3505b5eeb15574d5d4e51d17cdfa78",
+    strip_prefix = "grammars-v4-9e5c345851c925fcf395da9fb4e10a5fa606cb12",
+    urls = ["https://github.com/antlr/grammars-v4/archive/9e5c345851c925fcf395da9fb4e10a5fa606cb12.zip"],
+)
+
+http_jar(
+    name = "antlr",
+    downloaded_file_name = "antlr-4.13.1-complete.jar",
+    sha256 = "bc13a9c57a8dd7d5196888211e5ede657cb64a3ce968608697e4f668251a8487",
+    urls = ["https://www.antlr.org/download/antlr-4.13.1-complete.jar"],
+)
