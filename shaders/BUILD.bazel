@@ -1,9 +1,13 @@
 load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
-    name = "shader_test",
-    srcs = ["shader_test.py"],
+    name = "quad_test",
+    srcs = ["quad_test.py"],
+    args = ["$(location quad.vert)"],
+    data = [
+        "quad.vert",
+    ],
     deps = [
-        "@antlr_grammars_v4//:glsl/py",
+        "//glsl_interpreter",
     ],
 )

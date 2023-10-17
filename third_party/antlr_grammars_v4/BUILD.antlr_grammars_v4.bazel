@@ -1,6 +1,7 @@
 load("@pypi//:requirements.bzl", "requirement")
 load("@rules_java//java:defs.bzl", "java_binary")
 load("@rules_python//python:defs.bzl", "py_library")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 
 java_binary(
     name = "antlr",
@@ -37,9 +38,29 @@ genrule(
     tools = [":antlr"],
 )
 
+write_file(
+    name = "glsl/py_init",
+    out = "glsl/__init__.py",
+    content = [
+        "from .%s import %s" % (mod, mod)
+        for mod in [
+            "GLSLLexer",
+            "GLSLParser",
+            "GLSLParserListener",
+            "GLSLParserVisitor",
+            "GLSLPreParser",
+            "GLSLPreParserListener",
+            "GLSLPreParserVisitor",
+        ]
+    ],
+)
+
 py_library(
     name = "glsl/py",
-    srcs = [":glsl/py_srcs"],
+    srcs = [
+        ":glsl/py_init",
+        ":glsl/py_srcs",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         requirement("antlr4-python3-runtime"),
