@@ -82,9 +82,9 @@ install_deps()
 http_archive(
     name = "antlr_grammars_v4",
     build_file = "//third_party/antlr_grammars_v4:BUILD.antlr_grammars_v4.bazel",
-    sha256 = "b1741976e0e2f04e7da6c87d4f93f6fc8b3505b5eeb15574d5d4e51d17cdfa78",
-    strip_prefix = "grammars-v4-9e5c345851c925fcf395da9fb4e10a5fa606cb12",
-    urls = ["https://github.com/antlr/grammars-v4/archive/9e5c345851c925fcf395da9fb4e10a5fa606cb12.zip"],
+    sha256 = "d69b5a48f5d62fd3a335257f7404ca55054398819d0f39c87f2c8d8760d9f146",
+    strip_prefix = "grammars-v4-a2c72ef95eea718f1803573ab52f4bb93b209f78",
+    urls = ["https://github.com/antlr/grammars-v4/archive/a2c72ef95eea718f1803573ab52f4bb93b209f78.zip"],
 )
 
 http_jar(
