@@ -1,4 +1,4 @@
-load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
 
 py_library(
     name = "glsl_interpreter",
@@ -7,4 +7,10 @@ py_library(
     deps = [
         "@antlr_grammars_v4//:glsl/py",
     ],
+)
+
+py_test(
+    name = "la_test",
+    srcs = ["la_test.py"],
+    deps = [":glsl_interpreter"],
 )
